@@ -1,17 +1,20 @@
 import java.util.Scanner;
 
 public class Utente {
-    Scanner scannerstring = new Scanner(System.in);
-    public String nome;
-    public int punteggio;
-    public String passwd; //?
-
     
+    Scanner scannerString = new Scanner(System.in);
+    public String nome; //null
+    public int punteggio; //Serve per il gioco 
+    public String passwd; //?
+    public boolean logged;
+
+//Utente u = new Utente()    
 
     public Utente(String nome, String passwd) {
         this.nome = nome;
         this.punteggio = 0;
         this.passwd = passwd;
+        this.logged = false;
     }
 
     public void Stampa(){
@@ -22,18 +25,18 @@ public class Utente {
         String scelta;
         System.out.println("DESIDERI MODIFICARE IL NOME UTENTE? [Y/N]");
         do {
-            scelta = scannerstring.nextLine();
+            scelta = scannerString.nextLine();
         } while (scelta.toUpperCase() != "Y" || scelta.toUpperCase() != "N");
         if (scelta == "Y") {
-            String nuovonome = scannerstring.nextLine();
+            String nuovonome = scannerString.nextLine();
             this.nome = nuovonome;
         }
         System.out.println("DESIDERI MODIFICARE LA PASSWORD? [Y/N]");
         do {
-            scelta = scannerstring.nextLine();
+            scelta = scannerString.nextLine();
         } while (scelta.toUpperCase() != "Y" || scelta.toUpperCase() != "N");
         if (scelta == "Y") {
-            String nuovapasswd = scannerstring.nextLine();
+            String nuovapasswd = scannerString.nextLine();
             this.passwd = nuovapasswd;
         }
     }
@@ -41,5 +44,11 @@ public class Utente {
     public void modificaPunteggio(int punteggio){
         this.punteggio += punteggio;
     }
+
+    public boolean isLogged(){
+        return this.logged;
+    }
+
+    
     
 }

@@ -13,14 +13,31 @@ public class Login {
         // } else {
         //     registroUtenti.add(username);
         // }
-
         System.out.println("Enter password");
         String password = myScannerS.nextLine();
+        Utente newUser = new Utente(username, password);
 
-        registroUtenti.add(new Utente(username, password));
+        /*
+         * Possibilita di fare ciclo for e fare .equals()
+         */
+
+        if(!registroUtenti.utenti.contains(newUser)){
+
+            registroUtenti.add(newUser);
+        }
 
     }
-    public boolean login(){
-        return false;
+    public boolean login(Utente user){
+        int registrato = registroUtenti.utenti.indexOf(user);
+        boolean retValue;
+        if(registrato > 0 && !user.isLogged()){
+            user.logged = true;
+            retValue =  true;
+
+        }
+
+        else retValue = false;
+
+        return retValue;
     }
 }
