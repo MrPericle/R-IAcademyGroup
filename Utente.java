@@ -5,9 +5,9 @@ public class Utente {
 
     
 
-    public Utente(String nome, int punteggio, String passwd) {
+    public Utente(String nome, String passwd) {
         this.nome = nome;
-        this.punteggio = punteggio;
+        this.punteggio = 0;
         this.passwd = passwd;
     }
 
