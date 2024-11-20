@@ -10,7 +10,7 @@ public class RegistroUtenti {
 
 
 
-    public void registrazione(Utente ut){
+    public void add(Utente ut){
        
         utenti.add(ut);
     }
