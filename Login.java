@@ -20,4 +20,19 @@ public class Login {
         registroUtenti.add(new Utente(username, password));
         
     }
+
+
+    public boolean login(Utente user){
+        int registrato = registroUtenti.utenti.indexOf(user);
+        boolean retValue;
+        if(registrato > 0 && !user.isLogged()){
+            user.logged = true;
+            retValue =  true;
+
+        }
+
+        else retValue = false;
+
+        return retValue;
+    }
 }

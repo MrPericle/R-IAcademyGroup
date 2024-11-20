@@ -1,10 +1,12 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class MainTest {
     public static void main(String[] args) {
-
+        Random rand = new Random();
         Scanner scannerInt = new Scanner(System.in);
         RegistroUtenti myRegistroUtenti = new RegistroUtenti();
+        Challenge aGame = new Challenge(myRegistroUtenti.utenti.get(rand.nextInt(myRegistroUtenti.utenti.size()))); 
 
         
         //Opzioni menu
@@ -26,6 +28,7 @@ public class MainTest {
                     break;
                 
                 case 4:
+                    aGame.game();
                     break;
                     
             }
