@@ -4,6 +4,7 @@ public class MainTest {
     public static void main(String[] args) {
 
         Scanner scannerInt = new Scanner(System.in);
+        RegistroUtenti myRegistroUtenti = new RegistroUtenti();
         
         //Opzioni menu
         stampaMenu();
@@ -18,9 +19,13 @@ public class MainTest {
                     
                     break;
                 case 2:
+
                     
                     break;
                 case 3:
+                    break;
+                
+                case 4:
                     break;
                     
             }
@@ -40,9 +45,10 @@ public class MainTest {
         System.out.println("Benvenuto! Scegli un opzione del menù:");
         System.out.println("0: Login");
         System.out.println("1: Registrazione");
-        System.out.println("2: Modifica dei dati utente");
-        System.out.println("3: Prove matematiche");
-        System.out.println("4: Esci");
+        System.out.println("2: Visualizza utenti");
+        System.out.println("3: Modifica dei dati utente");
+        System.out.println("4: Prove matematiche");
+        System.out.println("5: Esci");
         System.out.print("Inserisci un opzione: ");
 
     }
