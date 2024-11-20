@@ -15,7 +15,7 @@ public class Utente {
     }
 
     public void Stampa(){
-        //....
+        System.out.println("Nome utente: " + nome);
     }
 
     public void modifica(){
