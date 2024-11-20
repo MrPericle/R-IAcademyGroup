@@ -18,6 +18,10 @@ public class Utente {
     public void modifica(){
 
     }
+
+    public void modificaPunteggio(int punteggio){
+        this.punteggio += punteggio;
+    }
     
 }
 
