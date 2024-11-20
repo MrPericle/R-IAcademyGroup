@@ -5,6 +5,7 @@ public class MainTest {
 
         Scanner scannerInt = new Scanner(System.in);
         RegistroUtenti myRegistroUtenti = new RegistroUtenti();
+
         
         //Opzioni menu
         stampaMenu();
@@ -19,7 +20,6 @@ public class MainTest {
                     
                     break;
                 case 2:
-
                     
                     break;
                 case 3:
@@ -31,7 +31,6 @@ public class MainTest {
             }
 
         stampaMenu();
-
         optionMenu = scannerInt.nextInt();
 
     }

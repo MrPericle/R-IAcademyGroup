@@ -15,6 +15,12 @@ public class RegistroUtenti {
         utenti.add(ut);
     }
 
+    public void stampaUtenti(){
+        for (Utente utente:utenti){
+            utente.Stampa();
+        }
+    }
+
 
 
 }
