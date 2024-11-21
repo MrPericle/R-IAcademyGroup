@@ -5,8 +5,9 @@ public class MainTest {
     public static void main(String[] args) {
         Random rand = new Random();
         Scanner scannerInt = new Scanner(System.in);
-        RegistroUtenti myRegistroUtenti = new RegistroUtenti();
-        Challenge aGame = new Challenge(myRegistroUtenti.utenti.get(rand.nextInt(myRegistroUtenti.utenti.size()))); 
+        
+        Login logger = new Login(new RegistroUtenti());
+        Challenge aGame = new Challenge(logger.registroUtenti.utenti.get(rand.nextInt(logger.registroUtenti.utenti.size()))); 
 
         
         //Opzioni menu

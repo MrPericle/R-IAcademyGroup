@@ -2,6 +2,11 @@ import java.util.Scanner;
 
 public class Login {
 
+    public Login(RegistroUtenti registroUtenti) {
+        this.registroUtenti = registroUtenti;
+    }
+
+
     public RegistroUtenti registroUtenti = new RegistroUtenti();
     public void registrazione(){
         Scanner myScannerS = new Scanner(System.in); // Create a Scanner object for string
