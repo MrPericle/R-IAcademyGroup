@@ -22,6 +22,15 @@ public class RegistroUtenti {
         }
     }
 
+    public Utente findUser(Utente user){
+        Utente retUtente = null;
+        if(utenti.contains(user)){
+            System.out.println("Utente trovato");
+            retUtente = utenti.get(utenti.indexOf(user));
+        }
+        return retUtente;
+    }
+
 
 
 }

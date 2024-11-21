@@ -104,24 +104,26 @@ superiori  */
     }
 
     public void game(){
-        boolean lost = level1Challenge();
-        if(!lost){
-            lost = level2Challenge();
+        if(user.isLogged()){
+            boolean lost = level1Challenge();
             if(!lost){
-                lost = level3Challenge();
+                lost = level2Challenge();
                 if(!lost){
-                    System.out.println("Hai vinto!");
+                    lost = level3Challenge();
+                    if(!lost){
+                        System.out.println("Hai vinto!");
+                    }
+                    else{
+                        System.out.println("Peccato, eri vicino...");
+                    }
                 }
                 else{
-                    System.out.println("Peccato, eri vicino...");
+                    System.out.println("Peccato, eri a meta strada");
                 }
             }
             else{
-                System.out.println("Peccato, eri a meta strada");
+                System.out.println("Grave");
             }
-        }
-        else{
-            System.out.println("Grave");
         }
     }
 }
