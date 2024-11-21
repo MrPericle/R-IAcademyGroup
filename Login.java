@@ -15,10 +15,11 @@ public class Login {
         
         System.out.println("Enter password");
         String password = myScannerS.nextLine();
-        if(registroUtenti.utenti.contains(username)){
+        if(this.registroUtenti.utenti.contains(username)){
             System.out.println("Il nome" + username + "già esiste");
         } else {
-            registroUtenti.add(new Utente(username, password));
+            System.out.println("Registrazione di "+username+" con passwd "+password+" completata.");
+            this.registroUtenti.add(new Utente(username, password));
         }
         
     }
@@ -26,14 +27,20 @@ public class Login {
 
     public boolean login(Utente user){
         int registrato = registroUtenti.utenti.indexOf(user);
+        Utente toLog = registroUtenti.utenti.get(registrato);
+        System.out.println("registrato->"+registrato);
         boolean retValue;
-        if(registrato >= 0 && !user.isLogged()){
-            user.logged = true;
+        if(registrato >= 0 && !toLog.isLogged()){
+            System.out.println("Logged in");
+            toLog.logged = true;
             retValue =  true;
 
         }
-
-        else retValue = false;
+        else {
+            System.out.println("Unable to login");
+            retValue = false;
+        
+        }
 
         return retValue;
     }

@@ -31,16 +31,16 @@ public class Utente {
             System.out.println("DESIDERI MODIFICARE IL NOME UTENTE? [Y/N]");
             do {
                 scelta = scannerString.nextLine();
-            } while (scelta.toUpperCase() != "Y" || scelta.toUpperCase() != "N");
-            if (scelta == "Y") {
+            } while (!scelta.toUpperCase().equals("Y")  && !scelta.toUpperCase().equals("N"));
+            if (scelta.equals("Y")) {
                 String nuovonome = scannerString.nextLine();
                 this.nome = nuovonome;
             }
             System.out.println("DESIDERI MODIFICARE LA PASSWORD? [Y/N]");
             do {
                 scelta = scannerString.nextLine();
-            } while (scelta.toUpperCase() != "Y" || scelta.toUpperCase() != "N");
-            if (scelta == "Y") {
+            } while (!scelta.toUpperCase().equals("Y")  && !scelta.toUpperCase().equals("N"));
+            if (scelta.equals("Y")) {
                 String nuovapasswd = scannerString.nextLine();
                 this.passwd = nuovapasswd;
             }
@@ -59,6 +59,14 @@ public class Utente {
 
     public boolean isLogged() {
         return this.logged;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        Utente compare = (Utente)o;
+        if(this.nome.equals(compare.nome) && this.passwd.equals(compare.passwd))
+            return true;
+        else return false;
     }
 
 }

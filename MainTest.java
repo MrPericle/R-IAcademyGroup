@@ -8,23 +8,22 @@ public class MainTest {
         Scanner stringScanner = new Scanner(System.in);
         
         Login logger = new Login(new RegistroUtenti());
-        Challenge aGame = new Challenge(logger.registroUtenti.utenti.get(rand.nextInt(logger.registroUtenti.utenti.size()))); 
-
+        
         
         //Opzioni menu
         stampaMenu();
-
+        
         int optionMenu = scannerInt.nextInt();
-         while (optionMenu<4){
+        while (optionMenu<5){
             switch (optionMenu) {
                 case 0:
-                    System.out.println("Login");
-                    System.out.println("Inserire username");
-                    String username = stringScanner.nextLine();
-                    System.out.println("Inserire password");
-                    String passwd = stringScanner.nextLine();
-                    logger.login(new Utente(username, passwd));
-                    break;
+                System.out.println("Login");
+                System.out.println("Inserire username");
+                String username = stringScanner.nextLine();
+                System.out.println("Inserire password");
+                String passwd = stringScanner.nextLine();
+                logger.login(new Utente(username, passwd));
+                break;
                 case 1:
                     System.out.println("Registrazione");
                     logger.registrazione();
@@ -42,9 +41,10 @@ public class MainTest {
                         toSearch.modifica();
                     }
                     break;
-                
+                    
                 case 4:
-                    aGame.game();
+                        Challenge aGame = new Challenge(logger.registroUtenti.utenti.get(rand.nextInt(logger.registroUtenti.utenti.size()))); 
+                        aGame.game();
                     break;
                     
             }
