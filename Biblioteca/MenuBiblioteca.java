@@ -25,8 +25,10 @@ public class MenuBiblioteca {
                 System.out.print("Anno uscita>>");
                 String dataUscitaAggiunta = stringScanner.nextLine();
                 System.out.println();
+                System.out.print("Numero copie>>");
+                int numeroCopieDaInserire = intScanner.nextInt();
                 if(loggedUser!= null)
-                    miaBiblioteca.aggiungiLibro(new Libro(nomeLibroAggiunta,dataUscitaAggiunta));
+                    miaBiblioteca.aggiungiLibro(new Libro(nomeLibroAggiunta,dataUscitaAggiunta),numeroCopieDaInserire);
                 else System.out.println("Login required");
                 
                 break;
@@ -37,10 +39,13 @@ public class MenuBiblioteca {
                 System.out.print("Anno uscita>>");
                 String dataUscitaRimuovere = stringScanner.nextLine();
                 System.out.println();
-
-                miaBiblioteca.rimuoviLibro(new Libro(nomeLibroRimuovere,dataUscitaRimuovere));
-                
+                System.out.print("Numero copie>>");
+                int numeroCopieDaRimuovere = intScanner.nextInt();
+                if(loggedUser!= null)
+                    miaBiblioteca.rimuoviLibro(new Libro(nomeLibroRimuovere,dataUscitaRimuovere),numeroCopieDaRimuovere);
+                else System.out.println("Login required");
                 break;
+
             case 3:
                 System.out.print("ID utente>>");
                 String idUtenteAggiungere = stringScanner.nextLine();
@@ -60,92 +65,87 @@ public class MenuBiblioteca {
                 break;
             case 4:
                 System.out.print("ID utente>>");
-                String idUtenteNoleggio = stringScanner.nextLine();
+                String idUtenteDaLoggare = stringScanner.nextLine();
                 System.out.println();
                 System.out.print("Nome utente>>");
-                String nomeUtenteNoleggio = stringScanner.nextLine();
-                System.err.println();
+                String nomeUtenteDaLoggare = stringScanner.nextLine();
+                System.out.println();
+                Utente possibileUtenteDaLoggare = new Utente(idUtenteDaLoggare, nomeUtenteDaLoggare);
+                if(userList.contains(possibileUtenteDaLoggare)){
+                    loggedUser = possibileUtenteDaLoggare;
+                    System.out.println("Utente loggato."); 
+                    System.out.println();
+                }
+                else{
+                    System.out.println("Utente non registrato.");
+                }
+                break;
+            
+            case 5:
                 System.out.print("Nome Libro>>");
                 String nomeLibroNoleggio = stringScanner.nextLine();
                 System.out.println();
                 System.out.print("Anno uscita>>");
                 String dataUscitaNoleggio = stringScanner.nextLine();
                 System.out.println();
-                int idxUtente = userList.indexOf(new Utente(idUtenteNoleggio, nomeUtenteNoleggio));
-                if(idxUtente >= 0){
-                    Utente utenteNoleggio = userList.get(idxUtente);
-                    Libro LibroToGet = miaBiblioteca.prestaLibro(new Libro(nomeLibroNoleggio, dataUscitaNoleggio));
-
-                    if(LibroToGet != null){
-                        utenteNoleggio.noleggiaLibro(LibroToGet);
-                    }
-                    else
-                        System.out.println("Libro non trovato. Impossibile concedere il noleggio.");
+                if(loggedUser!=null){
+                    miaBiblioteca.prestaLibro(new Libro(nomeLibroNoleggio, dataUscitaNoleggio),loggedUser);
                 }
                 else 
                     System.out.println("Utente non trovato. Impossibile concedere il noleggio.");
                 break;
-                case 5:
-                System.out.print("ID utente>>");
-                String idUtenteRestituzione = stringScanner.nextLine();
+            case 6:
+                
+            if(loggedUser!=null){
+                for (Libro libroNoleg : loggedUser.getlibriNoleggiati()) {
+                    System.out.println(libroNoleg);
+                }
                 System.out.println();
-                System.out.print("Nome utente>>");
-                String nomeUtenteRestituzione = stringScanner.nextLine();
-                System.err.println();
                 System.out.print("Nome Libro>>");
                 String nomeLibroRestituzione = stringScanner.nextLine();
                 System.out.println();
                 System.out.print("Anno uscita>>");
                 String dataUscitaRestituzione = stringScanner.nextLine();
                 System.out.println();
-                int idxUtenteRestituzione = userList.indexOf(new Utente(idUtenteRestituzione, nomeUtenteRestituzione));
-                if(idxUtenteRestituzione >= 0){
-                    Utente utenteRestituzione = userList.get(idxUtenteRestituzione);
-                    Libro LibroDaRestituire = miaBiblioteca.restituzioneLibro(new Libro(nomeLibroRestituzione, dataUscitaRestituzione));
-
-                    if(LibroDaRestituire != null && utenteRestituzione.getLibroNoleggiati().size() <= Biblioteca.MAX_Libro_CONSENTITI){
-                        utenteRestituzione.restituisciLibro(LibroDaRestituire);
-                    }
-                    else
-                        System.out.println("Libro non trovato. Impossibile concedere il noleggio.");
+                    miaBiblioteca.restituisciLibro(new Libro(nomeLibroRestituzione, dataUscitaRestituzione),loggedUser);
                 }
                 else 
                     System.out.println("Utente non trovato. Impossibile concedere il noleggio.");
                 break;
-            case 6:
+            case 7:
                 System.out.println(miaBiblioteca);
                 break;
-            case 7:
+            case 8:
                 for (Utente utente : userList) {
                     System.out.println(utente);
                 };
                 break;
-            case 8:
-                System.out.print("Premere 1 per cercare per nome; premere 2 per cercare per data>>");
-                int searchCoice = intScanner.nextInt();
-                while (searchCoice != 1 && searchCoice != 2) {
-                    System.out.println("Inserire una opzione valida");
-                    System.out.print("Premere 1 per cercare per nome; premere 2 per cercare per data>>");
-                    searchCoice = intScanner.nextInt();
-                }
+            // case 8:
+            //     System.out.print("Premere 1 per cercare per nome; premere 2 per cercare per data>>");
+            //     int searchCoice = intScanner.nextInt();
+            //     while (searchCoice != 1 && searchCoice != 2) {
+            //         System.out.println("Inserire una opzione valida");
+            //         System.out.print("Premere 1 per cercare per nome; premere 2 per cercare per data>>");
+            //         searchCoice = intScanner.nextInt();
+            //     }
 
-                switch (searchCoice) {
-                    case 1:
-                        System.out.print("Nome Libro>>");
-                        String nomeLibroNRicerca = stringScanner.nextLine();
-                        System.out.println();
-                        miaBiblioteca.searchByName(nomeLibroNRicerca);
-                        break;
-                    case 2:
-                        System.out.print("Nome Libro>>");
-                        String dataLibroNRicerca = stringScanner.nextLine();
-                        System.out.println();
-                        miaBiblioteca.searchByDate(dataLibroNRicerca);
-                        break;
-                    default:
-                        break;
-                }
-                break;
+            //     switch (searchCoice) {
+            //         case 1:
+            //             System.out.print("Nome Libro>>");
+            //             String nomeLibroNRicerca = stringScanner.nextLine();
+            //             System.out.println();
+            //             miaBiblioteca.searchByName(nomeLibroNRicerca);
+            //             break;
+            //         case 2:
+            //             System.out.print("Nome Libro>>");
+            //             String dataLibroNRicerca = stringScanner.nextLine();
+            //             System.out.println();
+            //             miaBiblioteca.searchByDate(dataLibroNRicerca);
+            //             break;
+            //         default:
+            //             break;
+            //     }
+            //     break;
             case 0:
                 running = false;
                 break;
@@ -161,7 +161,7 @@ public class MenuBiblioteca {
         int choice=0;
         boolean running = true;
         
-        System.out.println("Spedizione penne:");
+        System.out.println("Menu biblioteca:");
         
         while(running){
             System.out.println("1. Aggiungi Libro");

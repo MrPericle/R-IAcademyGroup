@@ -9,19 +9,17 @@ public class Biblioteca {
     ArrayList<Libro> librinoleggiati = new ArrayList<Libro>();
 
     // aggiungi ibro
-    public void aggiungiLibro(Libro libro, int numeroCopie){
-        
-          
-        if(libridisponibili.contains(libro)){
+    public void aggiungiLibro(Libro libro, int numeroCopie) {
+
+        if (libridisponibili.contains(libro)) {
             libro.incrementaNumeroCopie(numeroCopie);
-        }else {libridisponibili.add(libro);
-        System.out.println("Libro aggiunto alla biblioteca: " + libro.getNome());
+        } else {
+            libro.setNumeroCopie(numeroCopie);
+            libridisponibili.add(libro);
+            System.out.println("Libro aggiunto alla biblioteca: " + libro.getNome());
+        }
+
     }
-        
-    }
-
-
-
 
     // rimuovi libro
     public void rimuoviLibro(Libro libro, int numeroCopieDaRimuovere) {
@@ -30,25 +28,26 @@ public class Biblioteca {
         } else {
             if (libridisponibili.contains(libro)) {
                 libro.decrementaNumeroCopie(numeroCopieDaRimuovere);
-                libridisponibili.remove(libridisponibili.indexOf(libro));
-                System.out.println("Hai rimosso il libro " + libro.toString() + " dalla biblioteca!");
+                if (!libro.isAvaliable()) {
+                    libridisponibili.remove(libridisponibili.indexOf(libro));
+                    System.out.println("Hai rimosso il libro " + libro.toString() + " dalla biblioteca!");
+                }
             }
         }
-
     }
 
     // presta libro
-    public void prestaLibro(Libro libro, Utente utente){
+    public void prestaLibro(Libro libro, Utente utente) {
 
-        if (libridisponibili.contains(libro)){
+        if (libridisponibili.contains(libro)) {
             ArrayList<Libro> libri = utente.getlibriNoleggiati();
-            if (libri.contains(libro)){
+            if (libri.contains(libro)) {
                 System.out.println("Libro già noleggiato, non è possibile noleggiarlo nuovamente");
             } else {
                 utente.noleggiaLibro(libro);
                 librinoleggiati.add(libro);
                 libro.decrementaNumeroCopie();
-                if (libro.getNumeroCopie() == 0){
+                if (libro.getNumeroCopie() == 0) {
                     libridisponibili.remove(libro);
                 }
             }
@@ -56,23 +55,17 @@ public class Biblioteca {
             System.out.println("Libro non disponibile!");
         }
 
-
     }
 
-    //restituisci libro
-    public void restituisciLibro(Libro libro, Utente utente){
+    // restituisci libro
+    public void restituisciLibro(Libro libro, Utente utente) {
         if (librinoleggiati.isEmpty()) {
             System.out.println("Nella libreria nessun libro è stato noleggiato");
         } else {
             Scanner scannerstring = new Scanner(System.in);
-            if (utente.getlibriNoleggiati().isEmpty()) {
-                System.out.println("L'utente non ha libri noleggiati");
+            if (utente.getlibriNoleggiati().isEmpty() || utente.getlibriNoleggiati().contains(libro)) {
+                System.out.println("L'utente non ha il libro selezionato");
             } else {
-                System.out.println("Quale libro vuoi restituire?");
-                for (int i=0; i<utente.getlibriNoleggiati().size(); i++){
-                    System.out.println(i + "0 - " + "[" + utente.getlibriNoleggiati().get(i) + "]");
-                }
-                int scelta = scannerstring.nextInt();
                 utente.restituisciLibro(libro);
                 libro.incrementaNumeroCopie();
             }
@@ -81,14 +74,16 @@ public class Biblioteca {
 
     // stampaLibro
 
-    public void stampaLibriDisponibili() {
+    public String toString() {
+        String retString = "";
         if (libridisponibili.isEmpty()) {
             System.out.println("Nessun libro è presente nella biblioteca!");
         } else {
             System.out.println("I libri disponibili in biblioteca sono:");
             for (Libro lib : libridisponibili) {
-                System.out.println(lib.toString() + "Numero copie disponibili: " + lib.getNumeroCopie());
+                retString += lib.toString();
             }
         }
+        return retString;
     }
 }

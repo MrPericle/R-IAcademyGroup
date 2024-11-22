@@ -6,8 +6,8 @@ public class Libro {
     private String anno;
     
 
-    public Libro(int numeroCopie, String nome, String anno) {
-        this.numeroCopie = numeroCopie;
+    public Libro(String nome, String anno) {
+        this.numeroCopie = 1;
         this.nome = nome;
         this.anno = anno;
     }
