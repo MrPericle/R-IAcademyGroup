@@ -46,9 +46,10 @@ public class Biblioteca {
             } else {
                 utente.noleggiaLibro(libro);
                 librinoleggiati.add(libro);
-                libro.decrementaNumeroCopie();
-                if (libro.getNumeroCopie() == 0) {
-                    libridisponibili.remove(libro);
+                Libro libroInBiblioteca = libridisponibili.get(libridisponibili.indexOf(libro));
+                libroInBiblioteca.decrementaNumeroCopie();
+                if (libroInBiblioteca.getNumeroCopie() == 0) {
+                    libridisponibili.remove(libroInBiblioteca);
                 }
             }
         } else {
