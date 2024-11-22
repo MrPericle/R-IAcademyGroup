@@ -52,6 +52,10 @@ public class Libro {
         this.anno = anno;
     }
 
+    public boolean isAvaliable(){
+        return this.numeroCopie > 0;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
