@@ -8,9 +8,16 @@ public class Biblioteca {
     ArrayList<Libro> librinoleggiati = new ArrayList<Libro>();
 
     // aggiungi ibro
-    public void aggiungiLibro(Libro libro) {
+    public void aggiungiLibro(Libro libro){
+        
+    
+            libridisponibili.add(libro);
+            System.out.println("Libro aggiunto alla biblioteca: " + libro.getNome());
+
+        }
 
     }
+
 
     // rimuovi libro
     public void rimuoviLibro(Libro libro) {
