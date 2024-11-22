@@ -9,13 +9,16 @@ public class Biblioteca {
     ArrayList<Libro> librinoleggiati = new ArrayList<Libro>();
 
     // aggiungi ibro
-    public void aggiungiLibro(Libro libro){
+    public void aggiungiLibro(Libro libro, int numeroCopie){
         
-    
-            libridisponibili.add(libro);
-            System.out.println("Libro aggiunto alla biblioteca: " + libro.getNome());
-
-        }
+          
+        if(libridisponibili.contains(libro)){
+            libro.incrementaNumeroCopie(numeroCopie);
+        }else {libridisponibili.add(libro);
+        System.out.println("Libro aggiunto alla biblioteca: " + libro.getNome());
+    }
+        
+    }
 
 
 
