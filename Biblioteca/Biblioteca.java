@@ -1,6 +1,7 @@
 package Biblioteca;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Biblioteca {
 
@@ -54,14 +55,28 @@ public class Biblioteca {
 
     }
 
-    // restituisci libro
-    public void restituisciLibro(Libro libro, Utente utente) {
-
+    //restituisci libro
+    public void restituisciLibro(Libro libro, Utente utente){
+        if (librinoleggiati.isEmpty()) {
+            System.out.println("Nella libreria nessun libro è stato noleggiato");
+        } else {
+            Scanner scannerstring = new Scanner(System.in);
+            if (utente.getlibriNoleggiati().isEmpty()) {
+                System.out.println("L'utente non ha libri noleggiati");
+            } else {
+                System.out.println("Quale libro vuoi restituire?");
+                for (int i=0; i<utente.getlibriNoleggiati().size(); i++){
+                    System.out.println(i + "0 - " + "[" + utente.getlibriNoleggiati().get(i) + "]");
+                }
+                int scelta = scannerstring.nextInt();
+                utente.restituisciLibro(libro);
+                libro.incrementaNumeroCopie();
+            }
+        }
     }
 
     // stampaLibro
     public void stampaLibriDisponibili() {
 
     }
-
 }
