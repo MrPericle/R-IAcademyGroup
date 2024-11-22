@@ -25,7 +25,9 @@ public class MenuBiblioteca {
                 System.out.print("Anno uscita>>");
                 String dataUscitaAggiunta = stringScanner.nextLine();
                 System.out.println();
-                miaBiblioteca.aggiungiLibro(new Libro(nomeLibroAggiunta,dataUscitaAggiunta));
+                if(loggedUser!= null)
+                    miaBiblioteca.aggiungiLibro(new Libro(nomeLibroAggiunta,dataUscitaAggiunta));
+                else System.out.println("Login required");
                 
                 break;
             case 2:
@@ -170,7 +172,7 @@ public class MenuBiblioteca {
             System.out.println("6. Restituisci Libro");
             System.out.println("7. Lista Libro");
             System.out.println("8. Lista Libro noleggiati");
-            System.out.println("9. Ricerca Libro");
+            //System.out.println("9. Ricerca Libro");
             System.out.println("0. Esci");
 
             

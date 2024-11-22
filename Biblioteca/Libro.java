@@ -89,7 +89,7 @@ public class Libro {
 
     @Override
     public String toString() {
-        return "Libro [nome=" + nome + ", anno=" + anno + "]";
+        return "Libro [nome=" + nome + ", anno=" + anno + "Copie disponibili:"+this.numeroCopie+"]";
     }
 
     
