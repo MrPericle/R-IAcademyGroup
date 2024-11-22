@@ -17,15 +17,16 @@ public class Biblioteca {
 
         }
 
-    }
+
 
 
     // rimuovi libro
-    public void rimuoviLibro(Libro libro) {
+    public void rimuoviLibro(Libro libro, int numeroCopieDaRimuovere) {
         if (libridisponibili.isEmpty()) {
             System.out.println("Nessun libro è presente nella biblioteca!");
         } else {
             if (libridisponibili.contains(libro)) {
+                libro.decrementaNumeroCopie(numeroCopieDaRimuovere);
                 libridisponibili.remove(libridisponibili.indexOf(libro));
                 System.out.println("Hai rimosso il libro " + libro.toString() + " dalla biblioteca!");
             }
@@ -76,7 +77,15 @@ public class Biblioteca {
     }
 
     // stampaLibro
-    public void stampaLibriDisponibili() {
 
+    public void stampaLibriDisponibili() {
+        if (libridisponibili.isEmpty()) {
+            System.out.println("Nessun libro è presente nella biblioteca!");
+        } else {
+            System.out.println("I libri disponibili in biblioteca sono:");
+            for (Libro lib : libridisponibili) {
+                System.out.println(lib.toString() + "Numero copie disponibili: " + lib.getNumeroCopie());
+            }
+        }
     }
 }
