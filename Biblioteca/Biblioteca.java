@@ -33,7 +33,24 @@ public class Biblioteca {
     }
 
     // presta libro
-    public void prestaLibro(Libro libro, Utente utente) {
+    public void prestaLibro(Libro libro, Utente utente){
+
+        if (libridisponibili.contains(libro)){
+            ArrayList<Libro> libri = utente.getlibriNoleggiati();
+            if (libri.contains(libro)){
+                System.out.println("Libro già noleggiato, non è possibile noleggiarlo nuovamente");
+            } else {
+                utente.noleggiaLibro(libro);
+                librinoleggiati.add(libro);
+                libro.decrementaNumeroCopie();
+                if (libro.getNumeroCopie() == 0){
+                    libridisponibili.remove(libro);
+                }
+            }
+        } else {
+            System.out.println("Libro non disponibile!");
+        }
+
 
     }
 
