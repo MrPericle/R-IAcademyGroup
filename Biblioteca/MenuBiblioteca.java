@@ -116,9 +116,8 @@ public class MenuBiblioteca {
                 System.out.println(miaBiblioteca);
                 break;
             case 8:
-                for (Utente utente : userList) {
-                    System.out.println(utente);
-                };
+                System.out.println(loggedUser);
+                
                 break;
             // case 8:
             //     System.out.print("Premere 1 per cercare per nome; premere 2 per cercare per data>>");
